@@ -44,7 +44,7 @@
             <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contato</a>
+            <a class="nav-link" href="{% url 'contato' %}">Contato</a>
           </li>
         </ul>
       </div>
@@ -74,6 +74,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
+        {% block content %}
         <div class="post-preview">
           <a href="post.html">
             <h2 class="post-title">
@@ -131,6 +132,7 @@
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
         </div>
+        {% endblock %}
       </div>
     </div>
   </div>
