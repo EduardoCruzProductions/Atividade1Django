@@ -5,9 +5,23 @@
     <meta charset="utf-8">
     <title>Eduardo A. Cruz Junior</title>
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.css' %}">
     <style media="screen">
       .bg-cinza-claro{
-        background-color: #CCCCCC;
+        background-color: #ECECEC;
+      }
+      .bg-destaque{
+        background-color: #594540;
+      }
+      .color-destaque{
+        color: #594540;
+      }
+      .ul-style-none{
+        list-style-type: none;
+      }
+      .box-icon{
+        height: 48px;
+        width: 48px;
       }
     </style>
   </head>
@@ -17,10 +31,20 @@
       <div class="row border bg-cinza-claro p-5">
         <div class="col-lg-8 p-5">
           <h3>Eduardo</h3>
-          <h1>Cruz</h1>
+          <h1 class="font-weight-bold">Cruz Jr.</h1>
         </div>
         <div class="col-lg-4 p-5 text-right">
-          Lista de dados
+          <ul class="ul-style-none">
+            <li>Endereço <i class="fas fa-home ml-2 color-destaque"></i></li>
+            <li>(44) 99924-0044 <i class="fas fa-phone ml-2 color-destaque"></i></li>
+            <li>eduardo.adcj@gmail.com <i class="fas fa-envelope ml-2 color-destaque"></i></li>
+            <li>eacjproducoes.com <i class="fas fa-globe ml-2 color-destaque"></i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row border p-5">
+        <div class="col-lg-2 p-5">
+          <i class="fas fa-bars box-icon rounded-circle bg-destaque"></i>
         </div>
       </div>
 
