@@ -131,3 +131,58 @@ class ProdutoUpdate(UpdateView):
 class ProdutoListar(ListView):
     model = Produto
     template_name = "listas/lista_produto.html"
+
+##################### MODULO ######################
+class ModuloCreate(CreateView):
+    model = Modulo
+    template_name = "formulario.html"
+    success_url = reverse_lazy('listar-modulo')
+    fields = ['nome', 'versao', 'dataLancamento','preco', 'descricao', 'produto']
+    def get_context_data(self, *args, **kwargs):
+        context = super(ModuloCreate, self).get_context_data(*args, **kwargs)
+
+        # Adicionar coisas ao contexto que serão enviadas para o html
+        context['titulo'] = "Cadastro de novos Modulos"
+        context['botao'] = "Cadastrar"
+        context['classeBotao'] = "btn-primary"
+
+        # Devolve/envia o context para seu comportamento padrão
+        return context
+
+class ModuloExcluir(DeleteView):
+    model = Modulo
+    template_name="formulario.html"
+    success_url = reverse_lazy("listar-modulo")
+    fields = ['nome', 'versao', 'dataLancamento','preco', 'descricao', 'produto']
+    def get_context_data(self, *args, **kwargs):
+        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
+        context = super(ModuloExcluir, self).get_context_data(*args, **kwargs)
+
+        # Adicionar coisas ao contexto que serão enviadas para o html
+        context['titulo'] = "Deseja excluir esse registro?"
+        context['botao'] = "Excluir"
+        context['classeBotao'] = "btn-danger"
+
+        # Devolve/envia o context para seu comportamento padrão
+        return context
+
+class ModuloUpdate(UpdateView):
+    model = Modulo
+    template_name = "formulario.html"
+    success_url = reverse_lazy("listar-modulo")
+    fields = ['nome', 'versao', 'dataLancamento','preco', 'descricao', 'produto']
+    def get_context_data(self, *args, **kwargs):
+        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
+        context = super(ModuloUpdate, self).get_context_data(*args, **kwargs)
+
+        # Adicionar coisas ao contexto que serão enviadas para o html
+        context['titulo'] = "Editar cadastro de Modulo"
+        context['botao'] = "Salvar"
+        context['classeBotao'] = "btn-success"
+
+        # Devolve/envia o context para seu comportamento padrão
+        return context
+
+class ModuloListar(ListView):
+    model = Modulo
+    template_name = "listas/lista_modulo.html"

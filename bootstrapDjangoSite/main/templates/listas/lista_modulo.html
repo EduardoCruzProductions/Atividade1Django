@@ -1,0 +1,67 @@
+{% extends 'index_template.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block header_title %}
+<h1>Lista de Modulos</h1>
+{% endblock %}
+
+{% block mainContent %}
+<div class="container">
+    <div class="row">
+        <a href="{% url 'cadastro-modulo' %}" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            Novo modulo
+        </a>
+    </div>
+
+    <div class="row mt-2">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Versão</th>
+                    <th>Produto</th>
+                    <th>Data de Lançamento</th>
+                    <th>Preço</th>
+                    <th>Descrição</th> 
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for obj in object_list %}
+                <tr>
+                    <td>{{ obj.nome }}</td>
+                    <td>{{ obj.versao }}</td>
+                    <td>{{ obj.produto.titulo }}</td>
+                    <td>{{ obj.dataLancamento }}</td>
+                    <td>{{ obj.preco }}</td>
+                    <td>{{ obj.descricao }}</td>
+                    <td>
+                        <a href="{% url 'editar-modulo' obj.pk %}" class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+                        <a href="{% url 'excluir-modulo' obj.pk %}" class="btn btn-outline-danger btn-sm">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="100%">Nenhum modulo cadastrado</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
