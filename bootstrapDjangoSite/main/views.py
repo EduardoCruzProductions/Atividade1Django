@@ -178,7 +178,7 @@ class VendaUpdate(LoginRequiredMixin, UpdateView):
     fields = ['cliente', 'total', 'desconto']
     def get_context_data(self, *args, **kwargs):
         context = super(VendaUpdate, self).get_context_data(*args, **kwargs)
-        context['titulo'] = "Editar cadastro de Modulo"
+        context['titulo'] = "Editar cadastro de Venda"
         context['botao'] = "Salvar"
         context['classeBotao'] = "btn-success"
         return context
@@ -186,3 +186,44 @@ class VendaUpdate(LoginRequiredMixin, UpdateView):
 class VendaListar(LoginRequiredMixin, ListView):
     model = Venda
     template_name = "listas/lista_venda.html"
+
+##################### ITENS VENDA ######################
+class ItensVendaCreate(LoginRequiredMixin, CreateView):
+    model = ItensVenda
+    template_name = "formulario.html"
+    success_url = reverse_lazy('listar-itens-venda')
+    fields = ['modulo', 'venda', 'total', 'desconto']
+    def get_context_data(self, *args, **kwargs):
+        context = super(ItensVendaCreate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastro de novos Itens de Venda"
+        context['botao'] = "Cadastrar"
+        context['classeBotao'] = "btn-primary"
+        return context
+
+class ItensVendaExcluir(LoginRequiredMixin, DeleteView):
+    model = ItensVenda
+    template_name="formulario.html"
+    success_url = reverse_lazy('listar-itens-venda')
+    fields = ['modulo', 'venda', 'total', 'desconto']
+    def get_context_data(self, *args, **kwargs):
+        context = super(ItensVendaExcluir, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Deseja excluir esse registro?"
+        context['botao'] = "Excluir"
+        context['classeBotao'] = "btn-danger"
+        return context
+
+class ItensVendaUpdate(LoginRequiredMixin, UpdateView):
+    model = ItensVenda
+    template_name = "formulario.html"
+    success_url = reverse_lazy('listar-itens-venda')
+    fields = ['modulo', 'venda', 'total', 'desconto']
+    def get_context_data(self, *args, **kwargs):
+        context = super(ItensVendaUpdate, self).get_context_data(*args, **kwargs)
+        context['titulo'] = "Editar cadastro de Item de Venda"
+        context['botao'] = "Salvar"
+        context['classeBotao'] = "btn-success"
+        return context
+
+class ItensVendaListar(LoginRequiredMixin, ListView):
+    model = ItensVenda
+    template_name = "listas/lista_itens_venda.html"

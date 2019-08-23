@@ -32,4 +32,10 @@ urlpatterns = [
 	path('excluir/venda/<int:pk>', VendaExcluir.as_view(), name="excluir-venda"),
 	path('alterar/venda/<int:pk>', VendaUpdate.as_view(), name="editar-venda"),
 
+	# Itens de Venda
+	path('cadastro/itensvenda', ItensVendaCreate.as_view(), name="cadastro-itens-venda"),
+	path('listar/itensvenda', ItensVendaListar.as_view(), name="listar-itens-venda"),
+	path('excluir/itensvenda/<int:pk>', ItensVendaExcluir.as_view(), name="excluir-itens-venda"),
+	path('alterar/itensvenda/<int:pk>', ItensVendaUpdate.as_view(), name="editar-itens-venda"),
+
 ]
