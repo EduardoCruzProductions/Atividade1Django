@@ -10,5 +10,8 @@ urlpatterns = [
 
 	# Cliente
 	path('cadastro/cliente', ClienteCreate.as_view(), name="cadastro-cliente"),
+	path('listar/cliente', ClienteListar.as_view(), name="listar-cliente"),
+	path('excluir/cliente/<int:pk>/', ClienteExcluir.as_view(), name="excluir-cliente"),
+	path('editar/cliente/<int:pk>/', ClienteUpdate.as_view(), name="editar-cliente"),
 
 ]
