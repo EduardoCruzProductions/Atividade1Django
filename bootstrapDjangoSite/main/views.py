@@ -31,7 +31,7 @@ class ClienteCreate(CreateView):
         context = super(ClienteCreate, self).get_context_data(*args, **kwargs)
 
         # Adicionar coisas ao contexto que serão enviadas para o html
-        context['titulo'] = "Cadastro de novos Estados"
+        context['titulo'] = "Cadastro de novos Clientes"
         context['botao'] = "Cadastrar"
         context['classeBotao'] = "btn-primary"
 
@@ -75,3 +75,59 @@ class ClienteUpdate(UpdateView):
 class ClienteListar(ListView):
     model = Cliente
     template_name = "listas/lista_cliente.html"
+
+
+##################### PRODUTO ######################
+class ProdutoCreate(CreateView):
+    model = Produto
+    template_name = "formulario.html"
+    success_url = reverse_lazy('listar-produto')
+    fields = ['titulo', 'versao', 'dataLancamento', 'descricao']
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProdutoCreate, self).get_context_data(*args, **kwargs)
+
+        # Adicionar coisas ao contexto que serão enviadas para o html
+        context['titulo'] = "Cadastro de novos Produtos"
+        context['botao'] = "Cadastrar"
+        context['classeBotao'] = "btn-primary"
+
+        # Devolve/envia o context para seu comportamento padrão
+        return context
+
+class ProdutoExcluir(DeleteView):
+    model = Produto
+    template_name="formulario.html"
+    success_url = reverse_lazy("listar-produto")
+    fields = ['titulo', 'versao', 'dataLancamento', 'descricao']
+    def get_context_data(self, *args, **kwargs):
+        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
+        context = super(ProdutoExcluir, self).get_context_data(*args, **kwargs)
+
+        # Adicionar coisas ao contexto que serão enviadas para o html
+        context['titulo'] = "Deseja excluir esse registro?"
+        context['botao'] = "Excluir"
+        context['classeBotao'] = "btn-danger"
+
+        # Devolve/envia o context para seu comportamento padrão
+        return context
+
+class ProdutoUpdate(UpdateView):
+    model = Produto
+    template_name = "formulario.html"
+    success_url = reverse_lazy("listar-cliente")
+    fields = ['titulo', 'versao', 'dataLancamento', 'descricao']
+    def get_context_data(self, *args, **kwargs):
+        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
+        context = super(ProdutoUpdate, self).get_context_data(*args, **kwargs)
+
+        # Adicionar coisas ao contexto que serão enviadas para o html
+        context['titulo'] = "Editar cadastro de Produto"
+        context['botao'] = "Salvar"
+        context['classeBotao'] = "btn-success"
+
+        # Devolve/envia o context para seu comportamento padrão
+        return context
+
+class ProdutoListar(ListView):
+    model = Produto
+    template_name = "listas/lista_produto.html"

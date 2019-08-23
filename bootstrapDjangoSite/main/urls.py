@@ -14,4 +14,11 @@ urlpatterns = [
 	path('excluir/cliente/<int:pk>/', ClienteExcluir.as_view(), name="excluir-cliente"),
 	path('editar/cliente/<int:pk>/', ClienteUpdate.as_view(), name="editar-cliente"),
 
+	# Produto
+	path('cadastro/produto', ProdutoCreate.as_view(), name="cadastro-produto"),
+	path('listar/produto', ProdutoListar.as_view(), name="listar-produto"),
+	path('excluir/produto/<int:pk>', ProdutoExcluir.as_view(), name="excluir-produto"),
+	path('alterar/produto/<int:pk>', ProdutoUpdate.as_view(), name="editar-produto"),
+
+
 ]
