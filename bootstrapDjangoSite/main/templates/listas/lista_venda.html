@@ -1,0 +1,63 @@
+{% extends 'index_template.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block header_title %}
+<h1>Lista de Vendas</h1>
+{% endblock %}
+
+{% block mainContent %}
+<div class="container">
+    <div class="row  mt-5">
+        <a href="{% url 'cadastro-venda' %}" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            Nova venda
+        </a>
+    </div>
+
+    <div class="row mt-2">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Total</th>
+                    <th>Desconto</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for obj in object_list %}
+                <tr>
+                    <td>{{ obj.cliente.nome }}</td>
+                    <td>{{ obj.total }}</td>
+                    <td>{{ obj.desconto }}</td>
+                    <td>{{ obj.dataCompra }}</td>
+                    <td>
+                        <a href="{% url 'editar-venda' obj.pk %}" class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+                        <a href="{% url 'excluir-venda' obj.pk %}" class="btn btn-outline-danger btn-sm">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="100%">Nenhuma venda cadastrada</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
