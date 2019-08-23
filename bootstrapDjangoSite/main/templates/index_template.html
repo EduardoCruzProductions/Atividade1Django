@@ -16,8 +16,11 @@
 
   <!-- Custom fonts for this template -->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
 
   <!-- Custom styles for this template -->
   <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
@@ -31,7 +34,9 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand" href="#">E.A.C.J - Produções</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
       </button>
@@ -49,6 +54,47 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'curriculum' %}">Curriculum</a>
           </li>
+
+          {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Cadastros
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'cadastro-cliente' %}">Cliente</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'cadastro-produto' %}">Produto</a>
+              <a class="dropdown-item" href="{% url 'cadastro-modulo' %}">Modulo</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Consulta
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'listar-cliente' %}">Cliente</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'listar-produto' %}">Produto</a>
+              <a class="dropdown-item" href="{% url 'listar-modulo' %}">Modulo</a>
+            </div>
+          </li>
+          {% endif %}
+
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+          </li>
+          {% endif %}
+
+          {% if request.user.is_authenticated != True %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          {% endif %}
+
         </ul>
       </div>
     </div>
@@ -143,9 +189,8 @@
   </div>
   {% endblock %}
 
-  <hr>
-
   {% block footer %}
+  <hr>
   <!-- Footer -->
   <footer>
     <div class="container">

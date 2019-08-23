@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Cliente, Modulo, Produto, Venda, ItensVenda
 
@@ -22,7 +23,7 @@ class CurriculoView(TemplateView):
 
 
 ##################### CLIENTE ######################
-class ClienteCreate(CreateView):
+class ClienteCreate(LoginRequiredMixin, CreateView):
     model = Cliente
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-cliente')
@@ -38,7 +39,7 @@ class ClienteCreate(CreateView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class ClienteExcluir(DeleteView):
+class ClienteExcluir(LoginRequiredMixin, DeleteView):
     model = Cliente
     template_name="formulario.html"
     success_url = reverse_lazy("listar-cliente")
@@ -55,7 +56,7 @@ class ClienteExcluir(DeleteView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class ClienteUpdate(UpdateView):
+class ClienteUpdate(LoginRequiredMixin, UpdateView):
     model = Cliente
     template_name = "formulario.html"
     success_url = reverse_lazy("listar-cliente")
@@ -72,13 +73,13 @@ class ClienteUpdate(UpdateView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class ClienteListar(ListView):
+class ClienteListar(LoginRequiredMixin, ListView):
     model = Cliente
     template_name = "listas/lista_cliente.html"
 
 
 ##################### PRODUTO ######################
-class ProdutoCreate(CreateView):
+class ProdutoCreate(LoginRequiredMixin, CreateView):
     model = Produto
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-produto')
@@ -94,7 +95,7 @@ class ProdutoCreate(CreateView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class ProdutoExcluir(DeleteView):
+class ProdutoExcluir(LoginRequiredMixin, DeleteView):
     model = Produto
     template_name="formulario.html"
     success_url = reverse_lazy("listar-produto")
@@ -111,7 +112,7 @@ class ProdutoExcluir(DeleteView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class ProdutoUpdate(UpdateView):
+class ProdutoUpdate(LoginRequiredMixin, UpdateView):
     model = Produto
     template_name = "formulario.html"
     success_url = reverse_lazy("listar-cliente")
@@ -128,12 +129,12 @@ class ProdutoUpdate(UpdateView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class ProdutoListar(ListView):
+class ProdutoListar(LoginRequiredMixin, ListView):
     model = Produto
     template_name = "listas/lista_produto.html"
 
 ##################### MODULO ######################
-class ModuloCreate(CreateView):
+class ModuloCreate(LoginRequiredMixin, CreateView):
     model = Modulo
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-modulo')
@@ -149,7 +150,7 @@ class ModuloCreate(CreateView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class ModuloExcluir(DeleteView):
+class ModuloExcluir(LoginRequiredMixin, DeleteView):
     model = Modulo
     template_name="formulario.html"
     success_url = reverse_lazy("listar-modulo")
@@ -166,7 +167,7 @@ class ModuloExcluir(DeleteView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class ModuloUpdate(UpdateView):
+class ModuloUpdate(LoginRequiredMixin, UpdateView):
     model = Modulo
     template_name = "formulario.html"
     success_url = reverse_lazy("listar-modulo")
@@ -183,6 +184,6 @@ class ModuloUpdate(UpdateView):
         # Devolve/envia o context para seu comportamento padrão
         return context
 
-class ModuloListar(ListView):
+class ModuloListar(LoginRequiredMixin, ListView):
     model = Modulo
     template_name = "listas/lista_modulo.html"
