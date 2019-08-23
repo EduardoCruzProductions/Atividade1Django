@@ -30,13 +30,9 @@ class ClienteCreate(LoginRequiredMixin, CreateView):
     fields = ['nome', 'cpf', 'email']
     def get_context_data(self, *args, **kwargs):
         context = super(ClienteCreate, self).get_context_data(*args, **kwargs)
-
-        # Adicionar coisas ao contexto que serão enviadas para o html
         context['titulo'] = "Cadastro de novos Clientes"
         context['botao'] = "Cadastrar"
         context['classeBotao'] = "btn-primary"
-
-        # Devolve/envia o context para seu comportamento padrão
         return context
 
 class ClienteExcluir(LoginRequiredMixin, DeleteView):
@@ -45,15 +41,10 @@ class ClienteExcluir(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("listar-cliente")
     fields = ['nome', 'cpf', 'email']
     def get_context_data(self, *args, **kwargs):
-        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
         context = super(ClienteExcluir, self).get_context_data(*args, **kwargs)
-
-        # Adicionar coisas ao contexto que serão enviadas para o html
         context['titulo'] = "Deseja excluir esse registro?"
         context['botao'] = "Excluir"
         context['classeBotao'] = "btn-danger"
-
-        # Devolve/envia o context para seu comportamento padrão
         return context
 
 class ClienteUpdate(LoginRequiredMixin, UpdateView):
@@ -62,15 +53,10 @@ class ClienteUpdate(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("listar-cliente")
     fields = ['nome', 'cpf', 'email']
     def get_context_data(self, *args, **kwargs):
-        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
         context = super(ClienteUpdate, self).get_context_data(*args, **kwargs)
-
-        # Adicionar coisas ao contexto que serão enviadas para o html
         context['titulo'] = "Editar cadastro de Cliente"
         context['botao'] = "Salvar"
         context['classeBotao'] = "btn-success"
-
-        # Devolve/envia o context para seu comportamento padrão
         return context
 
 class ClienteListar(LoginRequiredMixin, ListView):
@@ -86,13 +72,9 @@ class ProdutoCreate(LoginRequiredMixin, CreateView):
     fields = ['titulo', 'versao', 'dataLancamento', 'descricao']
     def get_context_data(self, *args, **kwargs):
         context = super(ProdutoCreate, self).get_context_data(*args, **kwargs)
-
-        # Adicionar coisas ao contexto que serão enviadas para o html
         context['titulo'] = "Cadastro de novos Produtos"
         context['botao'] = "Cadastrar"
         context['classeBotao'] = "btn-primary"
-
-        # Devolve/envia o context para seu comportamento padrão
         return context
 
 class ProdutoExcluir(LoginRequiredMixin, DeleteView):
@@ -101,15 +83,10 @@ class ProdutoExcluir(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("listar-produto")
     fields = ['titulo', 'versao', 'dataLancamento', 'descricao']
     def get_context_data(self, *args, **kwargs):
-        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
         context = super(ProdutoExcluir, self).get_context_data(*args, **kwargs)
-
-        # Adicionar coisas ao contexto que serão enviadas para o html
         context['titulo'] = "Deseja excluir esse registro?"
         context['botao'] = "Excluir"
         context['classeBotao'] = "btn-danger"
-
-        # Devolve/envia o context para seu comportamento padrão
         return context
 
 class ProdutoUpdate(LoginRequiredMixin, UpdateView):
@@ -118,15 +95,10 @@ class ProdutoUpdate(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("listar-cliente")
     fields = ['titulo', 'versao', 'dataLancamento', 'descricao']
     def get_context_data(self, *args, **kwargs):
-        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
         context = super(ProdutoUpdate, self).get_context_data(*args, **kwargs)
-
-        # Adicionar coisas ao contexto que serão enviadas para o html
         context['titulo'] = "Editar cadastro de Produto"
         context['botao'] = "Salvar"
         context['classeBotao'] = "btn-success"
-
-        # Devolve/envia o context para seu comportamento padrão
         return context
 
 class ProdutoListar(LoginRequiredMixin, ListView):
@@ -141,13 +113,9 @@ class ModuloCreate(LoginRequiredMixin, CreateView):
     fields = ['nome', 'versao', 'dataLancamento','preco', 'descricao', 'produto']
     def get_context_data(self, *args, **kwargs):
         context = super(ModuloCreate, self).get_context_data(*args, **kwargs)
-
-        # Adicionar coisas ao contexto que serão enviadas para o html
         context['titulo'] = "Cadastro de novos Modulos"
         context['botao'] = "Cadastrar"
         context['classeBotao'] = "btn-primary"
-
-        # Devolve/envia o context para seu comportamento padrão
         return context
 
 class ModuloExcluir(LoginRequiredMixin, DeleteView):
@@ -156,15 +124,10 @@ class ModuloExcluir(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("listar-modulo")
     fields = ['nome', 'versao', 'dataLancamento','preco', 'descricao', 'produto']
     def get_context_data(self, *args, **kwargs):
-        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
         context = super(ModuloExcluir, self).get_context_data(*args, **kwargs)
-
-        # Adicionar coisas ao contexto que serão enviadas para o html
         context['titulo'] = "Deseja excluir esse registro?"
         context['botao'] = "Excluir"
         context['classeBotao'] = "btn-danger"
-
-        # Devolve/envia o context para seu comportamento padrão
         return context
 
 class ModuloUpdate(LoginRequiredMixin, UpdateView):
@@ -173,15 +136,10 @@ class ModuloUpdate(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("listar-modulo")
     fields = ['nome', 'versao', 'dataLancamento','preco', 'descricao', 'produto']
     def get_context_data(self, *args, **kwargs):
-        # Chamar o "pai" para que sempre tenha o comportamento padrão, além do nosso
         context = super(ModuloUpdate, self).get_context_data(*args, **kwargs)
-
-        # Adicionar coisas ao contexto que serão enviadas para o html
         context['titulo'] = "Editar cadastro de Modulo"
         context['botao'] = "Salvar"
         context['classeBotao'] = "btn-success"
-
-        # Devolve/envia o context para seu comportamento padrão
         return context
 
 class ModuloListar(LoginRequiredMixin, ListView):

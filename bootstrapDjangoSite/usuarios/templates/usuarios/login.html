@@ -4,19 +4,12 @@
 
 {% load crispy_forms_tags %}
 
-
-{% block menu %} {% endblock %}
-{% block header %} {% endblock %}
-
+{% block header_title %}
+<h1>{{ titulo }}</h1>
+{% endblock %}
 
 {% block content %}
 <div class="container py-5">
-
-    <div class="row mt-5">
-        <div class="col-lg">
-            <h3>{{ titulo }}</h3>
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-lg-5">
