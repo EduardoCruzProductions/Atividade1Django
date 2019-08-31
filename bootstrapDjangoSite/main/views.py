@@ -9,9 +9,6 @@ from .models import Cliente, Modulo, Produto, Venda, ItensVenda
 
 # Create your views here.
 
-class IndexView(TemplateView):
-    template_name = "index.html"
-
 class SobreView(TemplateView):
     template_name = "sobre.html"
 

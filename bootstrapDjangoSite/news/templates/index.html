@@ -1,0 +1,32 @@
+{% extends 'index_template.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  {% for obj in object_list %}
+  <div class="post-preview">
+    <a href="post.html">
+      <h2 class="post-title">
+        {{obj.titulo}}
+      </h2>
+      <h3 class="post-subtitle">
+        {{obj.resumo}}
+      </h3>
+    </a>
+    <p class="post-meta">Publicado por
+      <a href="#">{{obj.autor}}</a>
+      em {{obj.dataPublicacao}}</p>
+  </div>
+  <hr>
+  {% empty %}
+  <tr>
+    <td colspan="100%">Nenhum cliente cadastrado</td>
+  </tr>
+  {% endfor %}
+
+
+<!-- Pager -->
+<div class="clearfix">
+  <a class="btn btn-primary float-right" href="#">Publicações antigas &rarr;</a>
+</div>
+{% endblock %}
