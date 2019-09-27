@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 
 from .models import Cliente, Modulo, Produto, Venda, ItensVenda
 
@@ -25,12 +26,18 @@ class ClienteCreate(LoginRequiredMixin, CreateView):
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-cliente')
     fields = ['nome', 'cpf', 'email']
+    
     def get_context_data(self, *args, **kwargs):
         context = super(ClienteCreate, self).get_context_data(*args, **kwargs)
         context['titulo'] = "Cadastro de novos Clientes"
         context['botao'] = "Cadastrar"
         context['classeBotao'] = "btn-primary"
         return context
+    
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
 
 class ClienteExcluir(LoginRequiredMixin, DeleteView):
     model = Cliente
@@ -43,6 +50,11 @@ class ClienteExcluir(LoginRequiredMixin, DeleteView):
         context['botao'] = "Excluir"
         context['classeBotao'] = "btn-danger"
         return context
+    
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Cliente, pk=self.kwargs['pk'],
+        usuario=self.request.user)
+        return self.object
 
 class ClienteUpdate(LoginRequiredMixin, UpdateView):
     model = Cliente
@@ -56,9 +68,17 @@ class ClienteUpdate(LoginRequiredMixin, UpdateView):
         context['classeBotao'] = "btn-success"
         return context
 
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Cliente, pk=self.kwargs['pk'],
+        usuario=self.request.user)
+        return self.object
+
 class ClienteListar(LoginRequiredMixin, ListView):
     model = Cliente
     template_name = "listas/lista_cliente.html"
+    def get_queryset(self):
+        self.object_list = Cliente.objects.filter(usuario=self.request.user)
+        return self.object_list;
 
 
 ##################### PRODUTO ######################
