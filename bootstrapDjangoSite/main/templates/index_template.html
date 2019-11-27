@@ -85,6 +85,18 @@
               <a class="dropdown-item" href="{% url 'listar-itens-venda' %}">Itens de Venda</a>
             </div>
           </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Noticias
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'cadastro-noticia' %}">Nova noticia</a>
+              <a class="dropdown-item" href="{% url 'listar-noticia' %}">Minha noticias</a>
+            </div>
+          </li>
+
           {% endif %}
 
           {% if request.user.is_authenticated %}

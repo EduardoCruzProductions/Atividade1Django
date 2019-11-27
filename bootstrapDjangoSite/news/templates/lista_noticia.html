@@ -1,0 +1,63 @@
+{% extends 'index_template.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block header_title %}
+<h1>Lista de Clientes</h1>
+{% endblock %}
+
+{% block mainContent %}
+<div class="container">
+    <div class="row mt-5">
+        <a href="{% url 'cadastro-noticia' %}" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            Nova noticia
+        </a>
+    </div>
+
+    <div class="row mt-2">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Resumo</th>
+                    <th>Conteúdo</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for obj in object_list %}
+                <tr>
+                    <td>{{ obj.titulo }}</td>
+                    <td>{{ obj.resumo }}</td>
+                    <td>{{ obj.conteudo }}</td>
+                    <td>{{ obj.dataPublicacao }}</td>
+                    <td>
+                        <a href="{% url 'editar-noticia' obj.pk %}" class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+                        <a href="{% url 'excluir-noticia' obj.pk %}" class="btn btn-outline-danger btn-sm">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="100%">Nenhum noticia cadastrado</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

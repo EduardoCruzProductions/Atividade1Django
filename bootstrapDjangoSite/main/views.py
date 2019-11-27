@@ -33,11 +33,6 @@ class ClienteCreate(LoginRequiredMixin, CreateView):
         context['botao'] = "Cadastrar"
         context['classeBotao'] = "btn-primary"
         return context
-    
-    def form_valid(self, form):
-        form.instance.usuario = self.request.user
-        url = super().form_valid(form)
-        return url
 
 class ClienteExcluir(LoginRequiredMixin, DeleteView):
     model = Cliente
@@ -51,11 +46,6 @@ class ClienteExcluir(LoginRequiredMixin, DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
     
-    def get_object(self, queryset=None):
-        self.object = get_object_or_404(Cliente, pk=self.kwargs['pk'],
-        usuario=self.request.user)
-        return self.object
-
 class ClienteUpdate(LoginRequiredMixin, UpdateView):
     model = Cliente
     template_name = "formulario.html"
@@ -68,18 +58,9 @@ class ClienteUpdate(LoginRequiredMixin, UpdateView):
         context['classeBotao'] = "btn-success"
         return context
 
-    def get_object(self, queryset=None):
-        self.object = get_object_or_404(Cliente, pk=self.kwargs['pk'],
-        usuario=self.request.user)
-        return self.object
-
 class ClienteListar(LoginRequiredMixin, ListView):
     model = Cliente
     template_name = "listas/lista_cliente.html"
-    def get_queryset(self):
-        self.object_list = Cliente.objects.filter(usuario=self.request.user)
-        return self.object_list;
-
 
 ##################### PRODUTO ######################
 class ProdutoCreate(LoginRequiredMixin, CreateView):
