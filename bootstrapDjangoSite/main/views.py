@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
+from braces.views import GroupRequiredMixin
 
 from .models import Cliente, Modulo, Produto, Venda, ItensVenda
 
@@ -21,7 +22,8 @@ class CurriculoView(TemplateView):
 
 
 ##################### CLIENTE ######################
-class ClienteCreate(LoginRequiredMixin, CreateView):
+class ClienteCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u"Administrador"
     model = Cliente
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-cliente')
@@ -34,7 +36,8 @@ class ClienteCreate(LoginRequiredMixin, CreateView):
         context['classeBotao'] = "btn-primary"
         return context
 
-class ClienteExcluir(LoginRequiredMixin, DeleteView):
+class ClienteExcluir(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     model = Cliente
     template_name="formulario.html"
     success_url = reverse_lazy("listar-cliente")
@@ -46,7 +49,8 @@ class ClienteExcluir(LoginRequiredMixin, DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
     
-class ClienteUpdate(LoginRequiredMixin, UpdateView):
+class ClienteUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     model = Cliente
     template_name = "formulario.html"
     success_url = reverse_lazy("listar-cliente")
@@ -58,12 +62,14 @@ class ClienteUpdate(LoginRequiredMixin, UpdateView):
         context['classeBotao'] = "btn-success"
         return context
 
-class ClienteListar(LoginRequiredMixin, ListView):
+class ClienteListar(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     model = Cliente
     template_name = "listas/lista_cliente.html"
 
 ##################### PRODUTO ######################
-class ProdutoCreate(LoginRequiredMixin, CreateView):
+class ProdutoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u"Administrador"
     model = Produto
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-produto')
@@ -75,7 +81,8 @@ class ProdutoCreate(LoginRequiredMixin, CreateView):
         context['classeBotao'] = "btn-primary"
         return context
 
-class ProdutoExcluir(LoginRequiredMixin, DeleteView):
+class ProdutoExcluir(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     model = Produto
     template_name="formulario.html"
     success_url = reverse_lazy("listar-produto")
@@ -87,7 +94,8 @@ class ProdutoExcluir(LoginRequiredMixin, DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
 
-class ProdutoUpdate(LoginRequiredMixin, UpdateView):
+class ProdutoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     model = Produto
     template_name = "formulario.html"
     success_url = reverse_lazy("listar-cliente")
@@ -99,12 +107,14 @@ class ProdutoUpdate(LoginRequiredMixin, UpdateView):
         context['classeBotao'] = "btn-success"
         return context
 
-class ProdutoListar(LoginRequiredMixin, ListView):
+class ProdutoListar(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     model = Produto
     template_name = "listas/lista_produto.html"
 
 ##################### MODULO ######################
-class ModuloCreate(LoginRequiredMixin, CreateView):
+class ModuloCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u"Administrador"
     model = Modulo
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-modulo')
@@ -116,7 +126,8 @@ class ModuloCreate(LoginRequiredMixin, CreateView):
         context['classeBotao'] = "btn-primary"
         return context
 
-class ModuloExcluir(LoginRequiredMixin, DeleteView):
+class ModuloExcluir(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     model = Modulo
     template_name="formulario.html"
     success_url = reverse_lazy("listar-modulo")
@@ -128,7 +139,8 @@ class ModuloExcluir(LoginRequiredMixin, DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
 
-class ModuloUpdate(LoginRequiredMixin, UpdateView):
+class ModuloUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     model = Modulo
     template_name = "formulario.html"
     success_url = reverse_lazy("listar-modulo")
@@ -140,12 +152,14 @@ class ModuloUpdate(LoginRequiredMixin, UpdateView):
         context['classeBotao'] = "btn-success"
         return context
 
-class ModuloListar(LoginRequiredMixin, ListView):
+class ModuloListar(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     model = Modulo
     template_name = "listas/lista_modulo.html"
 
 ##################### VENDA ######################
-class VendaCreate(LoginRequiredMixin, CreateView):
+class VendaCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u"Administrador"
     model = Venda
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-venda')
@@ -157,7 +171,8 @@ class VendaCreate(LoginRequiredMixin, CreateView):
         context['classeBotao'] = "btn-primary"
         return context
 
-class VendaExcluir(LoginRequiredMixin, DeleteView):
+class VendaExcluir(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     model = Venda
     template_name="formulario.html"
     success_url = reverse_lazy('listar-venda')
@@ -169,7 +184,8 @@ class VendaExcluir(LoginRequiredMixin, DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
 
-class VendaUpdate(LoginRequiredMixin, UpdateView):
+class VendaUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     model = Venda
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-venda')
@@ -181,12 +197,14 @@ class VendaUpdate(LoginRequiredMixin, UpdateView):
         context['classeBotao'] = "btn-success"
         return context
 
-class VendaListar(LoginRequiredMixin, ListView):
+class VendaListar(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     model = Venda
     template_name = "listas/lista_venda.html"
 
 ##################### ITENS VENDA ######################
-class ItensVendaCreate(LoginRequiredMixin, CreateView):
+class ItensVendaCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u"Administrador"
     model = ItensVenda
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-itens-venda')
@@ -198,7 +216,8 @@ class ItensVendaCreate(LoginRequiredMixin, CreateView):
         context['classeBotao'] = "btn-primary"
         return context
 
-class ItensVendaExcluir(LoginRequiredMixin, DeleteView):
+class ItensVendaExcluir(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     model = ItensVenda
     template_name="formulario.html"
     success_url = reverse_lazy('listar-itens-venda')
@@ -210,7 +229,8 @@ class ItensVendaExcluir(LoginRequiredMixin, DeleteView):
         context['classeBotao'] = "btn-danger"
         return context
 
-class ItensVendaUpdate(LoginRequiredMixin, UpdateView):
+class ItensVendaUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     model = ItensVenda
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-itens-venda')
@@ -222,6 +242,7 @@ class ItensVendaUpdate(LoginRequiredMixin, UpdateView):
         context['classeBotao'] = "btn-success"
         return context
 
-class ItensVendaListar(LoginRequiredMixin, ListView):
+class ItensVendaListar(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     model = ItensVenda
     template_name = "listas/lista_itens_venda.html"

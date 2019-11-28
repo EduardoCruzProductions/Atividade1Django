@@ -5,13 +5,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import News
 from django.shortcuts import get_object_or_404
+from braces.views import GroupRequiredMixin
 
 # Create your views here.
 class IndexView(ListView):
     model = News
     template_name = "index.html"
 
-class NewsCreate(LoginRequiredMixin, CreateView):
+class NewsCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
+    group_required = u"Administrador"
     model = News
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-noticia')
@@ -29,7 +31,8 @@ class NewsCreate(LoginRequiredMixin, CreateView):
         url = super().form_valid(form)
         return url
 
-class NewsExcluir(LoginRequiredMixin, DeleteView):
+class NewsExcluir(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
+    group_required = u"Administrador"
     model = News
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-noticia')
@@ -47,7 +50,8 @@ class NewsExcluir(LoginRequiredMixin, DeleteView):
         usuario = self.request.user)
         return self.object
 
-class NewsUpdate(LoginRequiredMixin, UpdateView):
+class NewsUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
+    group_required = u"Administrador"
     model = News
     template_name = "formulario.html"
     success_url = reverse_lazy('listar-noticia')
@@ -64,7 +68,8 @@ class NewsUpdate(LoginRequiredMixin, UpdateView):
         usuario=self.request.user)
         return self.object
 
-class NewsListar(LoginRequiredMixin, ListView):
+class NewsListar(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = u"Administrador"
     model = News
     template_name = "lista_noticia.html"
     def get_queryset(self):
