@@ -18,16 +18,9 @@
                 {% csrf_token %}
                 <!-- Gera o formulário -->
                 {{ form|crispy }}
-
-                <div class="row">
-                    <button type="submit" class="btn btn-primary">
-                        Entrar
-                    </button>
-                    <a class="btn btn-secondary ml-2" href="{% url 'user-create' %}">
-                        Registrar-se
-                    </a>
-                </div>
-                
+                <button type="submit" class="btn {{ classe }}">
+                    {{ botao }}
+                </button>
             </form>
         </div>
     </div>

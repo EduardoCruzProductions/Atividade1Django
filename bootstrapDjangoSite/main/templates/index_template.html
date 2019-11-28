@@ -33,7 +33,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="#">E.A.C.J - Produções</a>
+      <a class="navbar-brand" href="{% url 'index' %}">E.A.C.J - Produções</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -42,9 +42,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'index' %}">Inicio</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
           </li>
@@ -97,15 +94,18 @@
             </div>
           </li>
 
-          {% endif %}
-
-          {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Olá, <b>{{ request.user.username }} </b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'alterar-senha' %}">Alterar senha</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+            </div>
           </li>
-          {% endif %}
 
-          {% if request.user.is_authenticated != True %}
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}">Login</a>
           </li>
