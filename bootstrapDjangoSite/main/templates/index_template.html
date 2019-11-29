@@ -45,9 +45,13 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
           </li>
+
+          {% if request.user.is_authenticated != True %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contato' %}">Contato</a>
           </li>
+          {% endif %}
+          
           <li class="nav-item">
             <a class="nav-link" href="{% url 'curriculum' %}">Curriculum</a>
           </li>

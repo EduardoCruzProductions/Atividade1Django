@@ -23,7 +23,6 @@
                 <tr>
                     <th>Titulo</th>
                     <th>Resumo</th>
-                    <th>Conteúdo</th>
                     <th>Data</th>
                     <th>Ações</th>
                 </tr>
@@ -35,7 +34,6 @@
                 <tr>
                     <td>{{ obj.titulo }}</td>
                     <td>{{ obj.resumo }}</td>
-                    <td>{{ obj.conteudo }}</td>
                     <td>{{ obj.dataPublicacao }}</td>
                     <td>
                         <a href="{% url 'editar-noticia' obj.pk %}" class="btn btn-warning btn-sm">
