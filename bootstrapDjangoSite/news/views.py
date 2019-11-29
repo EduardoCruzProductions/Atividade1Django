@@ -6,11 +6,16 @@ from django.urls import reverse_lazy
 from .models import News
 from django.shortcuts import get_object_or_404
 from braces.views import GroupRequiredMixin
+from django.views.generic.detail import DetailView
 
 # Create your views here.
 class IndexView(ListView):
     model = News
     template_name = "index.html"
+
+class NewsDetalhes(DetailView):
+    model = News
+    template_name = "noticia.html"
 
 class NewsCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     group_required = u"Administrador"

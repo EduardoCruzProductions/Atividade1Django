@@ -5,7 +5,7 @@
   <div class="mt-5"></div>
   {% for obj in object_list %}
   <div class="post-preview">
-    <a href="post.html">
+    <a href="{% url 'noticia' obj.pk %}">
       <h2 class="post-title">
         {{obj.titulo}}
       </h2>
@@ -23,7 +23,6 @@
     <td colspan="100%">Nenhum cliente cadastrado</td>
   </tr>
   {% endfor %}
-
 
 <!-- Pager -->
 <div class="clearfix">

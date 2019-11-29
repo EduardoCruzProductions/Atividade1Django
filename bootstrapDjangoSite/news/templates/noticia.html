@@ -1,0 +1,28 @@
+{% extends 'index_template.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block header_title %}
+<h1>{{ object.titulo }}</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row">
+        <div class="col">
+            <h3>{{object.resumo}}</h3>
+            <p>{{object.conteudo}}</p>
+            <p class="text-right">
+                Escrito por <i>{{object.usuario.username}}</i>. <br>
+                Em {{object.dataPublicacao}}.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
