@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 
 class UsuarioCreate(CreateView):
     form_class = UserCreationForm
-    template_name = "formulario.html"
+    template_name = "usuarios/formulario.html"
     success_url = reverse_lazy("login")
 
     def get_context_data(self, *args, **kwargs):
